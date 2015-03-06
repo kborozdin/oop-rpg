@@ -1,0 +1,7 @@
+C:\Users\Кирилл\Desktop\oop-rpg\ConsoleVisualizerRPG\bin\Debug\ConsoleVisualizerRPG.exe
+C:\Users\Кирилл\Desktop\oop-rpg\ConsoleVisualizerRPG\bin\Debug\ConsoleVisualizerRPG.pdb
+C:\Users\Кирилл\Desktop\oop-rpg\ConsoleVisualizerRPG\bin\Debug\RPG.exe
+C:\Users\Кирилл\Desktop\oop-rpg\ConsoleVisualizerRPG\bin\Debug\RPG.pdb
+C:\Users\Кирилл\Desktop\oop-rpg\ConsoleVisualizerRPG\obj\x86\Debug\ConsoleVisualizerRPG.csprojResolveAssemblyReference.cache
+C:\Users\Кирилл\Desktop\oop-rpg\ConsoleVisualizerRPG\obj\x86\Debug\ConsoleVisualizerRPG.exe
+C:\Users\Кирилл\Desktop\oop-rpg\ConsoleVisualizerRPG\obj\x86\Debug\ConsoleVisualizerRPG.pdb

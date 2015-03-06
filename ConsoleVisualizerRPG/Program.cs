@@ -2,6 +2,7 @@ using System;
 using RPG;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace ConsoleVisualizerRPG
 {
@@ -17,39 +18,45 @@ namespace ConsoleVisualizerRPG
 		};
 
 		private static IForest forest;
-		private static string hero;
 
 		public static void Main(string[] args)
 		{
 			forest = TextFormatForestParser.LoadForest("../../../forest");
-			hero = forest.EnumerateForesters().First().Name;
-			forest.OnChange += Repaint;
+			forest.OnChange += () =>
+			{
+				Repaint();
+				Thread.Sleep(1000);
+			};
 			Repaint();
-			Mainloop();
-		}
 
+			var ai = new StupidAi(forest.Height, forest.Width, forest.EnumerateForesters().First(), new Position(3, 3));
+			var runner = new AiRunner(forest, ai);
+			runner.Interact();
+
+			//Mainloop();
+		}
+		/*
 		private static void Mainloop()
 		{
 			ConsoleKey key = ConsoleKey.NoName;
 			do
 			{
 				key = Console.ReadKey().Key;
-				Direction direction;
-				/*
-				Next line uses the feature of TryGetValue to
-				return a default value when there is no such key.
-				Default value for Direction is None (zero vector)
-				so nothing happens.
-				*/
-				keyboardActions.TryGetValue(key, out direction);
-				forest.MoveForester(hero, direction);
+				try
+				{
+					var direction = keyboardActions[key];
+					forest.MoveForester(hero, direction);
+				}
+				catch (KeyNotFoundException)
+				{
+				}
 			}
 			while (key != ConsoleKey.Enter);
 		}
-
+		*/
 		private static void Repaint()
 		{
-			Console.Clear();
+			//Console.Clear();
 			var board = new char[forest.Height, forest.Width];
 			var foresters = forest.EnumerateForesters().OrderBy(f => f.Name);
 

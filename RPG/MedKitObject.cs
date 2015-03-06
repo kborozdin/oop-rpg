@@ -7,13 +7,13 @@ namespace RPG
 		public GameObjectInteractionResult InteractWith(IForester forester, Direction direction)
 		{
 			return new GameObjectInteractionResult(
-				new EmptyObject(), forester.movedInDirection(direction).
-				withHealth(forester.Health + 1));
+				new EmptyObject(), forester.MovedInDirection(direction).
+				WithHealth(forester.Health + 1));
 		}
 
 		public char GetVisualRepresentation()
 		{
-			return '\u2764';
+			return 'h';
 		}
 
 		public string GetDescription()

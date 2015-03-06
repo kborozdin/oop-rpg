@@ -6,7 +6,7 @@ namespace RPG
 	{
 		public GameObjectInteractionResult InteractWith(IForester forester, Direction direction)
 		{
-			return new GameObjectInteractionResult(this, forester.movedInDirection(direction));
+			return new GameObjectInteractionResult(this, forester.MovedInDirection(direction));
 		}
 
 		public char GetVisualRepresentation()

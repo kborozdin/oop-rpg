@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RPG
 {
@@ -35,22 +36,22 @@ namespace RPG
 
 		public event OnChangeHandler OnChange = delegate { };
 
-		public void AddForester(IForester forester)
+		public void AddForester(IForester forester, bool emit = true)
 		{
 			foresters.Add(forester);
-			OnChange();
+			if (emit)
+				OnChange();
 		}
 
-		public bool MoveForester(string name, Direction direction)
+		public IForester MoveForester(string name, Direction direction)
 		{
 			IForester forester = foresters.Find(f => f.Name == name);
 			foresters.RemoveAll(f => f.Name == name);
-			Position destination = forester.Position.movedInDirection(direction);
+			Position destination = forester.Position.MovedInDirection(direction);
 			var interactionResult = GetGameObject(destination).InteractWith(forester, direction);
-			SetGameObject(destination, interactionResult.GameObject);
-			foresters.Add(interactionResult.Forester);
-			OnChange();
-			return interactionResult.Forester.Position == destination;
+			SetGameObject(destination, interactionResult.GameObject, false);
+			AddForester(interactionResult.Forester);
+			return interactionResult.Forester;
 		}
 
 		public IEnumerable<IForester> EnumerateForesters()
@@ -58,15 +59,21 @@ namespace RPG
 			return foresters;
 		}
 
+		public IForester FindForester(string name)
+		{
+			return foresters.FirstOrDefault(f => f.Name == name);
+		}
+
 		public IGameObject GetGameObject(Position position)
 		{
 			return gameObjects[position.Row, position.Column];
 		}
 
-		public void SetGameObject(Position position, IGameObject gameObject)
+		public void SetGameObject(Position position, IGameObject gameObject, bool emit = true)
 		{
 			gameObjects[position.Row, position.Column] = gameObject;
-			OnChange();
+			if (emit)
+				OnChange();
 		}
 	}
 }

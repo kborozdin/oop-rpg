@@ -1,0 +1,5 @@
+C:\Users\Кирилл\Desktop\oop-rpg\RPG\bin\Debug\RPG.exe
+C:\Users\Кирилл\Desktop\oop-rpg\RPG\bin\Debug\RPG.pdb
+C:\Users\Кирилл\Desktop\oop-rpg\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
+C:\Users\Кирилл\Desktop\oop-rpg\RPG\obj\x86\Debug\RPG.exe
+C:\Users\Кирилл\Desktop\oop-rpg\RPG\obj\x86\Debug\RPG.pdb

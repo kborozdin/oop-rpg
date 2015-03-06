@@ -15,12 +15,12 @@ namespace RPG
 			Position = position;
 		}
 
-		public IForester movedInDirection(Direction direction)
+		public IForester MovedInDirection(Direction direction)
 		{
-			return new OrdinaryForester(Name, Health, Position.movedInDirection(direction));
+			return new OrdinaryForester(Name, Health, Position.MovedInDirection(direction));
 		}
 
-		public IForester withHealth(int health)
+		public IForester WithHealth(int health)
 		{
 			return new OrdinaryForester(Name, health, Position);
 		}

@@ -1,0 +1,50 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RPG/OrdinaryForest.cs">
+    <Files>
+      <File FileName="ConsoleVisualizerRPG/Program.cs" Line="1" Column="1" />
+      <File FileName="RPG/TextFormatForestParser.cs" Line="1" Column="1" />
+      <File FileName="RPG/IForest.cs" Line="13" Column="1" />
+      <File FileName="RPG/OrdinaryForest.cs" Line="43" Column="3" />
+      <File FileName="RPG/GameObjectFactory.cs" Line="1" Column="1" />
+      <File FileName="RPG/IGameObject.cs" Line="1" Column="1" />
+      <File FileName="RPG/EmptyObject.cs" Line="1" Column="1" />
+      <File FileName="RPG/WallObject.cs" Line="1" Column="1" />
+      <File FileName="RPG/MedKitObject.cs" Line="1" Column="1" />
+      <File FileName="RPG/TrapObject.cs" Line="1" Column="1" />
+      <File FileName="RPG/OrdinaryForester.cs" Line="1" Column="1" />
+      <File FileName="RPG/IForester.cs" Line="1" Column="1" />
+      <File FileName="RPG/Position.cs" Line="17" Column="2" />
+      <File FileName="RPG/Direction.cs" Line="1" Column="1" />
+      <File FileName="TestRPG/TestOrdinaryForest.cs" Line="1" Column="1" />
+      <File FileName="RPG/GameObjectInteractionResult.cs" Line="1" Column="1" />
+      <File FileName="TestRPG/TestTextFormatForestParser.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="ConsoleVisualizerRPG" expanded="True" />
+          <Node name="RPG" expanded="True">
+            <Node name="OrdinaryForest.cs" selected="True" />
+          </Node>
+          <Node name="TestRPG" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True">
+          <Node name="TestRPG" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

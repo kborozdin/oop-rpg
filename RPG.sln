@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG", "RPG\RPG.csproj", "{5A71E0D2-EF50-42AA-BD73-1AA3AA4C5AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRPG", "TestRPG\TestRPG.csproj", "{360621B7-852A-4F9E-AC99-07C9420AEC42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleVisualizerRPG", "ConsoleVisualizerRPG\ConsoleVisualizerRPG.csproj", "{4D3AE64F-95CE-4BAA-9DDA-0BBD64C6808A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{360621B7-852A-4F9E-AC99-07C9420AEC42}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{360621B7-852A-4F9E-AC99-07C9420AEC42}.Debug|x86.Build.0 = Debug|Any CPU
+		{360621B7-852A-4F9E-AC99-07C9420AEC42}.Release|x86.ActiveCfg = Release|Any CPU
+		{360621B7-852A-4F9E-AC99-07C9420AEC42}.Release|x86.Build.0 = Release|Any CPU
+		{4D3AE64F-95CE-4BAA-9DDA-0BBD64C6808A}.Debug|x86.ActiveCfg = Debug|x86
+		{4D3AE64F-95CE-4BAA-9DDA-0BBD64C6808A}.Debug|x86.Build.0 = Debug|x86
+		{4D3AE64F-95CE-4BAA-9DDA-0BBD64C6808A}.Release|x86.ActiveCfg = Release|x86
+		{4D3AE64F-95CE-4BAA-9DDA-0BBD64C6808A}.Release|x86.Build.0 = Release|x86
+		{5A71E0D2-EF50-42AA-BD73-1AA3AA4C5AA1}.Debug|x86.ActiveCfg = Debug|x86
+		{5A71E0D2-EF50-42AA-BD73-1AA3AA4C5AA1}.Debug|x86.Build.0 = Debug|x86
+		{5A71E0D2-EF50-42AA-BD73-1AA3AA4C5AA1}.Release|x86.ActiveCfg = Release|x86
+		{5A71E0D2-EF50-42AA-BD73-1AA3AA4C5AA1}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ConsoleVisualizerRPG\ConsoleVisualizerRPG.csproj
+	EndGlobalSection
+EndGlobal

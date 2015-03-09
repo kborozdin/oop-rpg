@@ -11,46 +11,49 @@ namespace RPG
 
 		private readonly int height, width;
 		private IForester forester;
-		private readonly Position finish;
+		private Position finish;
 
 		private readonly bool[,] visited;
-		private IEnumerable<Direction> movings;
-		private bool sucessfullyMoved;
+		private IEnumerator<Direction> movings;
 
-		public StupidAi(int height, int width, IForester forester, Position finish)
+		public StupidAi(int height, int width, Position finish)
 		{
 			this.height = height;
 			this.width = width;
-			this.forester = forester;
 			this.finish = finish;
 
 			visited = new bool[height, width];
-			movings = FindPath(forester.Position);
+		}
+
+		public void CleanState()
+		{
+			for (int i = 0; i < height; i++)
+				for (int j = 0; j < width; j++)
+					visited[i, j] = false;
+			movings = null;
 		}
 
 		public Direction GetNextMove()
 		{
+			if (movings == null)
+				movings = FindPath(forester.Position).GetEnumerator();
 			if (forester.Health <= 0)
-				return null;
-			var direction = movings.First();
-			movings = movings.Skip(1); //TODO fix
+				throw new InvalidOperationException();
+			movings.MoveNext();
+			var direction = movings.Current;
 			return direction;
 		}
 
-		public void UpdateInformation(IForester newForester)
+		public void SetForester(IForester newForester)
 		{
-			sucessfullyMoved = newForester.Position != forester.Position;
 			forester = newForester;
+			CleanState();
 		}
 
-		public string GetForesterName()
+		public void SetFinish(Position newFinish)
 		{
-			return forester.Name;
-		}
-
-		public Position GetFinishPosition()
-		{
-			return finish;
+			finish = newFinish;
+			CleanState();
 		}
 
 		private bool IsInForestBoundaries(Position position)
@@ -63,7 +66,10 @@ namespace RPG
 		{
 			visited[position.Row, position.Column] = true;
 			if (position == finish)
-				yield break;
+			{
+				while (true)
+					yield return Direction.None;
+			}
 
 			foreach (var direction in directions)
 			{
@@ -74,7 +80,7 @@ namespace RPG
 					continue;
 
 				yield return direction;
-				if (!sucessfullyMoved)
+				if (forester.Position != newPosition)
 				{
 					visited[newPosition.Row, newPosition.Column] = true;
 					continue;

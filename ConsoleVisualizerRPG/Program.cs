@@ -8,55 +8,26 @@ namespace ConsoleVisualizerRPG
 {
 	static class MainClass
 	{
-		private static readonly Dictionary<ConsoleKey, Direction> keyboardActions =
-			new Dictionary<ConsoleKey, Direction>
-		{
-			{ConsoleKey.RightArrow, Direction.Right},
-			{ConsoleKey.UpArrow, Direction.Up},
-			{ConsoleKey.LeftArrow, Direction.Left},
-			{ConsoleKey.DownArrow, Direction.Down}
-		};
-
 		private static IForest forest;
 
 		public static void Main(string[] args)
 		{
 			forest = TextFormatForestParser.LoadForest("../../../forest");
-			forest.OnChange += () =>
-			{
-				Repaint();
-				Thread.Sleep(1000);
-			};
+
 			Repaint();
+			Thread.Sleep(100);
 
-			var ai = new StupidAi(forest.Height, forest.Width, forest.EnumerateForesters().First(), new Position(3, 3));
-			var runner = new AiRunner(forest, ai);
-			runner.Interact();
-
-			//Mainloop();
-		}
-		/*
-		private static void Mainloop()
-		{
-			ConsoleKey key = ConsoleKey.NoName;
-			do
+			while (true)
 			{
-				key = Console.ReadKey().Key;
-				try
-				{
-					var direction = keyboardActions[key];
-					forest.MoveForester(hero, direction);
-				}
-				catch (KeyNotFoundException)
-				{
-				}
+				forest.Simulate();
+				Repaint();
+				Thread.Sleep(100);
 			}
-			while (key != ConsoleKey.Enter);
 		}
-		*/
+
 		private static void Repaint()
 		{
-			//Console.Clear();
+			Console.Clear();
 			var board = new char[forest.Height, forest.Width];
 			var foresters = forest.EnumerateForesters().OrderBy(f => f.Name);
 

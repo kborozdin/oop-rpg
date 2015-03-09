@@ -4,9 +4,10 @@ namespace RPG
 {
 	public class EmptyObject : IGameObject
 	{
-		public GameObjectInteractionResult InteractWith(IForester forester, Direction direction)
+		public IGameObject InteractWith(IForester forester, Direction direction)
 		{
-			return new GameObjectInteractionResult(this, forester.MovedInDirection(direction));
+			forester.MoveInDirection(direction);
+			return this;
 		}
 
 		public char GetVisualRepresentation()

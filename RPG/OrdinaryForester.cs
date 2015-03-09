@@ -7,27 +7,35 @@ namespace RPG
 		public string Name { get; private set; }
 		public int Health { get; private set; }
 		public Position Position { get; private set; }
+		private readonly IAi ai;
 
-		public OrdinaryForester(string name, int health, Position position)
+		public OrdinaryForester(string name, int health, Position position, IAi ai)
 		{
-			Name = name;
-			Health = health;
-			Position = position;
+			this.Name = name;
+			this.Health = health;
+			this.Position = position;
+			this.ai = ai;
+			ai.SetForester(this);
 		}
 
-		public IForester MovedInDirection(Direction direction)
+		public void MoveInDirection(Direction direction)
 		{
-			return new OrdinaryForester(Name, Health, Position.MovedInDirection(direction));
+			Position = Position.MovedInDirection(direction);
 		}
 
-		public IForester WithHealth(int health)
+		public void IncreaseHealth(int delta)
 		{
-			return new OrdinaryForester(Name, health, Position);
+			Health += delta;
 		}
 
 		public char GetVisualRepresentation()
 		{
 			return Name[0];
+		}
+
+		public Direction GetNextMove()
+		{
+			return ai.GetNextMove();
 		}
 	}
 }

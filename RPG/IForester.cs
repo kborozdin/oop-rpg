@@ -8,9 +8,10 @@ namespace RPG
 		int Health { get; }
 		Position Position { get; }
 
-		IForester MovedInDirection(Direction direction);
-		IForester WithHealth(int health);
+		void MoveInDirection(Direction direction);
+		void IncreaseHealth(int delta);
 		char GetVisualRepresentation();
+		Direction GetNextMove();
 	}
 }
 

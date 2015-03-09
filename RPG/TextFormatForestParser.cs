@@ -14,6 +14,7 @@ namespace RPG
 		public static IForest ParseForest(string[] lines)
 		{
 			int height = int.Parse(lines[0]);
+			int width = lines[1].Length;
 			var forest = new OrdinaryForest(height, lines[1].Length);
 
 			for (int i = 1; i <= height; i++)
@@ -30,7 +31,8 @@ namespace RPG
 				var tokens = lines[i].Split();
 				var forester = new OrdinaryForester(
 					tokens[0], int.Parse(tokens[1]), new Position(
-					int.Parse(tokens[2]) - 1, int.Parse(tokens[3]) - 1));
+					int.Parse(tokens[2]) - 1, int.Parse(tokens[3]) - 1),
+					new StupidAi(height, width, new Position(int.Parse(tokens[4]) - 1, int.Parse(tokens[5]) - 1)));
 				forest.AddForester(forester);
 			}
 

@@ -43,15 +43,16 @@ namespace RPG
 				OnChange();
 		}
 
-		public IForester MoveForester(string name, Direction direction)
+		public bool MoveForester(string name, Direction direction)
 		{
-			IForester forester = foresters.Find(f => f.Name == name);
-			foresters.RemoveAll(f => f.Name == name);
-			Position destination = forester.Position.MovedInDirection(direction);
+			var forester = FindForester(name);
+			var oldPosition = forester.Position;
+
+			var destination = forester.Position.MovedInDirection(direction);
 			var interactionResult = GetGameObject(destination).InteractWith(forester, direction);
-			SetGameObject(destination, interactionResult.GameObject, false);
-			AddForester(interactionResult.Forester);
-			return interactionResult.Forester;
+
+			SetGameObject(destination, interactionResult);
+			return forester.Position != oldPosition;
 		}
 
 		public IEnumerable<IForester> EnumerateForesters()
@@ -74,6 +75,22 @@ namespace RPG
 			gameObjects[position.Row, position.Column] = gameObject;
 			if (emit)
 				OnChange();
+		}
+
+		public void Simulate()
+		{
+			foreach (var forester in foresters)
+			{
+				var direction = forester.GetNextMove();
+				MoveForester(forester.Name, direction);
+			}
+
+			CollectDeads();
+		}
+
+		public void CollectDeads()
+		{
+			foresters = foresters.Where(f => f.Health > 0).ToList();
 		}
 	}
 }

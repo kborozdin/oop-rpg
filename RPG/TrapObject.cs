@@ -4,11 +4,11 @@ namespace RPG
 {
 	public class TrapObject : IGameObject
 	{
-		public GameObjectInteractionResult InteractWith(IForester forester, Direction direction)
+		public IGameObject InteractWith(IForester forester, Direction direction)
 		{
-			return new GameObjectInteractionResult(
-				new EmptyObject(), forester.MovedInDirection(direction).
-				WithHealth(forester.Health - 1));
+			forester.IncreaseHealth(-1);
+			forester.MoveInDirection(direction);
+			return this;
 		}
 
 		public char GetVisualRepresentation()

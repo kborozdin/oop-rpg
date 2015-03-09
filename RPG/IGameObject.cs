@@ -4,7 +4,7 @@ namespace RPG
 {
 	public interface IGameObject
 	{
-		GameObjectInteractionResult InteractWith(IForester forester, Direction direction);
+		IGameObject InteractWith(IForester forester, Direction direction);
 		char GetVisualRepresentation();
 		string GetDescription();
 	}

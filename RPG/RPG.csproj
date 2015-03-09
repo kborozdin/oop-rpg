@@ -35,7 +35,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AiRunner.cs" />
     <Compile Include="IAi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,7 +48,6 @@
     <Compile Include="TrapObject.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="OrdinaryForester.cs" />
-    <Compile Include="GameObjectInteractionResult.cs" />
     <Compile Include="OrdinaryForest.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="TextFormatForestParser.cs" />

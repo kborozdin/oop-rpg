@@ -4,9 +4,9 @@ namespace RPG
 {
 	public class WallObject : IGameObject
 	{
-		public GameObjectInteractionResult InteractWith(IForester forester, Direction direction)
+		public IGameObject InteractWith(IForester forester, Direction direction)
 		{
-			return new GameObjectInteractionResult(this, forester);
+			return this;
 		}
 
 		public char GetVisualRepresentation()

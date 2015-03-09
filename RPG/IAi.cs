@@ -8,8 +8,8 @@ namespace RPG
 	public interface IAi
 	{
 		Direction GetNextMove();
-		void UpdateInformation(IForester forester);
-		string GetForesterName();
-		Position GetFinishPosition();
+		void CleanState();
+		void SetForester(IForester forester);
+		void SetFinish(Position finish);
 	}
 }

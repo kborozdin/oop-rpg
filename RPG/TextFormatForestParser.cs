@@ -32,7 +32,7 @@ namespace RPG
 				var forester = new OrdinaryForester(
 					tokens[0], int.Parse(tokens[1]), new Position(
 					int.Parse(tokens[2]) - 1, int.Parse(tokens[3]) - 1),
-					new StupidAi(height, width, new Position(int.Parse(tokens[4]) - 1, int.Parse(tokens[5]) - 1)));
+					new SmartAi(height, width, new Position(int.Parse(tokens[4]) - 1, int.Parse(tokens[5]) - 1)));
 				forest.AddForester(forester);
 			}
 

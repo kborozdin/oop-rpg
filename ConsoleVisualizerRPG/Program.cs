@@ -15,13 +15,13 @@ namespace ConsoleVisualizerRPG
 			forest = TextFormatForestParser.LoadForest("../../../forest");
 
 			Repaint();
-			Thread.Sleep(100);
+			Thread.Sleep(200);
 
 			while (true)
 			{
 				forest.Simulate();
 				Repaint();
-				Thread.Sleep(100);
+				Thread.Sleep(200);
 			}
 		}
 

@@ -42,6 +42,7 @@
     <Compile Include="IForester.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="EmptyObject.cs" />
+    <Compile Include="SmartAi.cs" />
     <Compile Include="StupidAi.cs" />
     <Compile Include="WallObject.cs" />
     <Compile Include="MedKitObject.cs" />

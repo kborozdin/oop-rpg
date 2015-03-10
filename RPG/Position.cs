@@ -23,6 +23,11 @@ namespace RPG
 			return this + direction;
 		}
 
+		public int DistanceTo(Position other)
+		{
+			return Math.Abs(Row - other.Row) + Math.Abs(Column - other.Column);
+		}
+
 		public override bool Equals(object other)
 		{
 			if (ReferenceEquals(other, null))

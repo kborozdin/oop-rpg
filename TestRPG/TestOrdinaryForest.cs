@@ -22,7 +22,7 @@ namespace TestRPG
 		[Test()]
 		public void TestAddForester()
 		{
-			var forester = new OrdinaryForester("X", 10, new Position(0, 1));
+			var forester = new OrdinaryForester("X", 10, new Position(0, 1), new StubAi());
 			forest.AddForester(forester);
 
 			var enumerated = forest.EnumerateForesters().ToList();
@@ -48,7 +48,7 @@ namespace TestRPG
 		[Test()]
 		public void TestMoveForester()
 		{
-			var forester = new OrdinaryForester("X", 10, new Position(2, 2));
+			var forester = new OrdinaryForester("X", 10, new Position(2, 2), new StubAi());
 			forest.AddForester(forester);
 			invoked = false;
 			forest.MoveForester(forester.Name, Direction.Right);

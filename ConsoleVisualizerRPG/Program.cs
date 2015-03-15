@@ -12,7 +12,7 @@ namespace ConsoleVisualizerRPG
 
 		public static void Main(string[] args)
 		{
-			forest = TextFormatForestParser.LoadForest("../../../forest");
+			forest = TextFormatForestParser.LoadForest("forest");
 
 			Repaint();
 			Thread.Sleep(200);

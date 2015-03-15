@@ -12,12 +12,12 @@ namespace RPG
 		int Height { get; }
 		int Width { get; }
 
-		void AddForester(IForester forester, bool emit);
+		void AddForester(IForester forester, bool emit = true);
 		bool MoveForester(string name, Direction direction);
 		IEnumerable<IForester> EnumerateForesters();
 		IForester FindForester(string name);
 		IGameObject GetGameObject(Position position);
-		void SetGameObject(Position position, IGameObject gameObject, bool emit);
+		void SetGameObject(Position position, IGameObject gameObject, bool emit = true);
 		void Simulate();
 		void CollectDeads();
 	}

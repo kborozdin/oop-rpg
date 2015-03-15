@@ -1,26 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace RPG
 {
+	public static class ArrayExtensions
+	{
+		public static bool IsLexicographicallyLessThan(this int[] first, int[] second)
+		{
+			int length = Math.Min(first.Length, second.Length);
+			for (int i = 0; i < length; i++)
+			{
+				if (first[i] < second[i])
+					return true;
+				if (first[i] > second[i])
+					return false;
+			}
+			if (first.Length < second.Length)
+				return true;
+			return false;
+		}
+	}
+
 	public class SmartAi : IAi
 	{
-		private static readonly Direction[] directions = new[] { Direction.Right, Direction.Up, Direction.Left, Direction.Down };
-
 		private readonly int height, width;
 		private IForester forester;
 		private Position finish;
 
-		private readonly bool[,] harmful;
-		private readonly bool[,] impassable;
-		private readonly bool[,] visited;
-
-		private Position oldPosition;
-		private Position desiredPosition;
-		private int oldHealth;
-		private bool waitForInfo;
+		private readonly SmartAiCellState[,] map;
+		private SmartAiForesterDump dump;
 
 		public SmartAi(int height, int width, Position finish)
 		{
@@ -28,54 +39,50 @@ namespace RPG
 			this.width = width;
 			this.finish = finish;
 
-			harmful = new bool[height, width];
-			impassable = new bool[height, width];
-			visited = new bool[height, width];
-		}
-
-		public void CleanState()
-		{
-			waitForInfo = false;
+			map = new SmartAiCellState[height, width];
 			for (int i = 0; i < height; i++)
 				for (int j = 0; j < width; j++)
-					visited[i, j] = false;
+					map[i, j] = new SmartAiCellState();
 		}
 
-		public Direction GetNextMove()
+		private void CleanState()
 		{
-			if (waitForInfo)
-			{
-				waitForInfo = false;
-				if (oldPosition == forester.Position)
-					impassable[desiredPosition.Row, desiredPosition.Column] = true;
-				visited[desiredPosition.Row, desiredPosition.Column] = true;
-				if (oldHealth > forester.Health)
-					harmful[desiredPosition.Row, desiredPosition.Column] = true;
-			}
+			dump = null;
+			for (int i = 0; i < height; i++)
+				for (int j = 0; j < width; j++)
+					map[i, j].Visited = false;
+		}
 
-			if (forester.Health <= 0)
-				throw new InvalidOperationException();
-			if (forester.Position == finish)
-				return Direction.None;
+		private void ProcessDump()
+		{
+			int row = dump.DesiredPosition.Row;
+			int column = dump.DesiredPosition.Column;
 
-			var distance = new int[height, width];
-			var parents = new Direction[height, width];
-			CalculateDistances(distance, parents);
+			if (dump.OldPosition == forester.Position)
+				map[row, column].Impassable = true;
+			map[row, column].Visited = true;
+			if (dump.OldHealth > forester.Health)
+				map[row, column].Harmful = true;
 
+			dump = null;
+		}
+
+		private Tuple<Position, Position> GetBestPositions(int[,] distance)
+		{
 			var bestNewPosition = new Position(-1, -1);
 			var linkedNewPosition = new Position(-1, -1);
-			var bestValue = Tuple.Create<int, int>(int.MaxValue, int.MaxValue);
+			var bestValue = new[] { int.MaxValue, int.MaxValue, int.MaxValue };
 
 			for (int i = 0; i < height; i++)
 				for (int j = 0; j < width; j++)
 				{
 					var me = new Position(i, j);
-					if (visited[i, j])
+					if (map[i, j].Visited)
 						continue;
 
 					int minNeighbour = int.MaxValue;
 					var curLinked = new Position(-1, -1);
-					foreach (var direction in directions)
+					foreach (var direction in Direction.directions)
 					{
 						var newPosition = me.MovedInDirection(direction);
 						if (!IsInForestBoundaries(newPosition))
@@ -87,9 +94,8 @@ namespace RPG
 						}
 					}
 
-					var currentValue = Tuple.Create<int, int>(minNeighbour, me.DistanceTo(finish));
-					//TODO
-					if (currentValue.Item1 < bestValue.Item1 || (currentValue.Item1 == bestValue.Item1 && currentValue.Item2 < bestValue.Item2))
+					var currentValue = new[] { minNeighbour, me.DistanceTo(finish), forester.Position.DistanceTo(me) };
+					if (currentValue.IsLexicographicallyLessThan(bestValue))
 					{
 						bestValue = currentValue;
 						linkedNewPosition = curLinked;
@@ -97,24 +103,42 @@ namespace RPG
 					}
 				}
 
-			if (bestValue.Item1 == int.MaxValue) //TODO
-				throw new Exception();
+			if (bestValue[0] == int.MaxValue)
+				throw new InvalidOperationException();
+
+			return Tuple.Create<Position, Position>(bestNewPosition, linkedNewPosition);
+		}
+
+		public Direction GetNextMove()
+		{
+			if (dump != null)
+				ProcessDump();
+
+			if (forester.Health <= 0)
+				throw new InvalidOperationException();
+			if (forester.Position == finish)
+				return Direction.None;
+
+			var distance = new int[height, width];
+			var parents = new Direction[height, width];
+			CalculateDistances(distance, parents);
+
+			var bestPositions = GetBestPositions(distance);
+			var bestNewPosition = bestPositions.Item1;
+			var linkedNewPosition = bestPositions.Item2;
 
 			if (forester.Position.DistanceTo(bestNewPosition) == 1)
 			{
-				foreach (var direction in directions)
+				foreach (var direction in Direction.directions)
 				{
 					var newPosition = forester.Position.MovedInDirection(direction);
 					if (newPosition == bestNewPosition)
 					{
-						oldPosition = forester.Position;
-						desiredPosition = newPosition;
-						oldHealth = forester.Health;
-						waitForInfo = true;
+						dump = new SmartAiForesterDump(forester.Position, newPosition, forester.Health);
 						return direction;
 					}
 				}
-				throw new Exception(); //TODO
+				Debug.Assert(false);
 			}
 
 			return RestoreFirstMove(linkedNewPosition, parents);
@@ -147,17 +171,17 @@ namespace RPG
 				Position position = (firstQueue.Count > 0 ? firstQueue.Dequeue() : secondQueue.Dequeue());
 				int currentDistance = distance[position.Row, position.Column];
 
-				foreach (var direction in directions)
+				foreach (var direction in Direction.directions)
 				{
 					var newPosition = position.MovedInDirection(direction);
 					if (!IsInForestBoundaries(newPosition))
 						continue;
-					if (impassable[newPosition.Row, newPosition.Column])
+					if (map[newPosition.Row, newPosition.Column].Impassable)
 						continue;
-					if (!visited[newPosition.Row, newPosition.Column])
+					if (!map[newPosition.Row, newPosition.Column].Visited)
 						continue;
 
-					if (!harmful[newPosition.Row, newPosition.Column])
+					if (!map[newPosition.Row, newPosition.Column].Harmful)
 					{
 						if (distance[newPosition.Row, newPosition.Column] > currentDistance)
 						{

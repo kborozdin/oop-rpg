@@ -10,6 +10,8 @@ namespace RPG
 		public static readonly Direction Left = new Direction(0, -1);
 		public static readonly Direction Down = new Direction(1, 0);
 
+		public static readonly Direction[] directions = new[] { Direction.Right, Direction.Up, Direction.Left, Direction.Down };
+
 		private Direction(int row, int column): base(row, column)
 		{
 		}

@@ -7,8 +7,6 @@ namespace RPG
 {
 	public class StupidAi : IAi
 	{
-		private static readonly Direction[] directions = new[] { Direction.Right, Direction.Up, Direction.Left, Direction.Down };
-
 		private readonly int height, width;
 		private IForester forester;
 		private Position finish;
@@ -71,7 +69,7 @@ namespace RPG
 					yield return Direction.None;
 			}
 
-			foreach (var direction in directions)
+			foreach (var direction in Direction.directions)
 			{
 				var newPosition = position.MovedInDirection(direction);
 				if (!IsInForestBoundaries(newPosition))

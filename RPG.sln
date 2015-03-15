@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRPG", "TestRPG\TestRPG.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleVisualizerRPG", "ConsoleVisualizerRPG\ConsoleVisualizerRPG.csproj", "{4D3AE64F-95CE-4BAA-9DDA-0BBD64C6808A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE4E20BA-5347-409A-86A6-939C1992791C}"
-	ProjectSection(SolutionItems) = preProject
-		forest = forest
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86

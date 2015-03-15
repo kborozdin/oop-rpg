@@ -8,7 +8,6 @@ namespace RPG
 	public interface IAi
 	{
 		Direction GetNextMove();
-		void CleanState();
 		void SetForester(IForester forester);
 		void SetFinish(Position finish);
 	}

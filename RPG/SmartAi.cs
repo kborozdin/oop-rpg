@@ -119,7 +119,7 @@ namespace RPG
 			if (forester.Position == finish)
 				return Direction.None;
 
-			var distance = int[height, width];
+			var distance = new int[height, width];
 			var parents = new Direction[height, width];
 			CalculateDistances(distance, parents);
 

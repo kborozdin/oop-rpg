@@ -7,8 +7,11 @@ namespace RPG
 {
 	public interface IAi
 	{
+		Position Finish { get; }
 		Direction GetNextMove();
-		void SetForester(IForester forester);
+		void SetForester(Forester forester);
 		void SetFinish(Position finish);
+		void CleanState();
+		void Inform(bool successfull, int[,] visibleMap, bool gameOver);
 	}
 }

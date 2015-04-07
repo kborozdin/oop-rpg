@@ -63,6 +63,21 @@ namespace RPG
 		{
 			return !first.Equals(second);
 		}
+
+		public Position ToZeroBased()
+		{
+			return new Position(Row - 1, Column - 1);
+		}
+
+		public static Position FromPoint(Point point)
+		{
+			return new Position(point.Y, point.X);
+		}
+
+		public Point ToPoint()
+		{
+			return new Point(Column, Row);
+		}
 	}
 }
 

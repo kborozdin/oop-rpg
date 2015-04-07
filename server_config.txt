@@ -1,0 +1,31 @@
+{
+  "Players": [
+    {
+      "Start": {
+        "Row": 1,
+        "Column": 1
+      },
+      "Finish": {
+        "Row": 2,
+        "Column": 2
+      },
+      "Health": 1
+    },
+    {
+      "Start": {
+        "Row": 10,
+        "Column": 10
+      },
+      "Finish": {
+        "Row": 20,
+        "Column": 20
+      },
+      "Health": 10
+    }
+  ],
+  "FogRadius": 2,
+  "Map": [
+    "000",
+    "111"
+  ]
+}

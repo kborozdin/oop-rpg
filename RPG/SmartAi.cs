@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace RPG
 {
@@ -27,8 +28,8 @@ namespace RPG
 	public class SmartAi : IAi
 	{
 		private readonly int height, width;
-		private IForester forester;
-		private Position finish;
+		private Forester forester;
+		public Position Finish { get; private set; }
 
 		private readonly SmartAiCellState[,] map;
 		private SmartAiForesterDump dump;
@@ -37,7 +38,7 @@ namespace RPG
 		{
 			this.height = height;
 			this.width = width;
-			this.finish = finish;
+			this.Finish = finish;
 
 			map = new SmartAiCellState[height, width];
 			for (int i = 0; i < height; i++)
@@ -45,7 +46,7 @@ namespace RPG
 					map[i, j] = new SmartAiCellState();
 		}
 
-		private void CleanState()
+		public void CleanState()
 		{
 			dump = null;
 			for (int i = 0; i < height; i++)
@@ -94,7 +95,7 @@ namespace RPG
 						}
 					}
 
-					var currentValue = new[] { minNeighbour, me.DistanceTo(finish), forester.Position.DistanceTo(me) };
+					var currentValue = new[] { minNeighbour, me.DistanceTo(Finish), forester.Position.DistanceTo(me) };
 					if (currentValue.IsLexicographicallyLessThan(bestValue))
 					{
 						bestValue = currentValue;
@@ -116,7 +117,7 @@ namespace RPG
 
 			if (forester.Health <= 0)
 				throw new InvalidOperationException();
-			if (forester.Position == finish)
+			if (forester.Position == Finish)
 				return Direction.None;
 
 			var distance = new int[height, width];
@@ -203,22 +204,24 @@ namespace RPG
 			}
 		}
 
-		public void SetForester(IForester newForester)
+		public void SetForester(Forester newForester)
 		{
 			forester = newForester;
-			CleanState();
 		}
 
 		public void SetFinish(Position newFinish)
 		{
-			finish = newFinish;
-			CleanState();
+			Finish = newFinish;
 		}
 
 		private bool IsInForestBoundaries(Position position)
 		{
 			return position.Row >= 0 && position.Row < height &&
 				position.Column >= 0 && position.Column < width;
+		}
+
+		public void Inform(bool successfull, int[,] visibleMap, bool gameOver)
+		{
 		}
 	}
 }

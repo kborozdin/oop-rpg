@@ -1,0 +1,10 @@
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\bin\Debug\PlayerRPG.exe.config
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\bin\Debug\PlayerRPG.exe
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\bin\Debug\PlayerRPG.pdb
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\bin\Debug\RPG.dll
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\bin\Debug\RPG.pdb
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\obj\Debug\PlayerRPG.csprojResolveAssemblyReference.cache
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\obj\Debug\PlayerRPG.exe
+C:\Users\Кирилл\Desktop\oop-rpg\PlayerRPG\obj\Debug\PlayerRPG.pdb

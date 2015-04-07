@@ -2,15 +2,22 @@ using System;
 
 namespace RPG
 {
-	public class OrdinaryForester : IForester
+	public class Forester
 	{
-		public string Name { get; private set; }
-		public int Health { get; private set; }
-		public Position Position { get; private set; }
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public int Health { get; set; }
+		public Position Position { get; set; }
 		private readonly IAi ai;
 
-		public OrdinaryForester(string name, int health, Position position, IAi ai)
+		public Position Finish
 		{
+			get { return ai.Finish; }
+		}
+
+		public Forester(int id, string name, int health, Position position, IAi ai)
+		{
+			this.Id = id;
 			this.Name = name;
 			this.Health = health;
 			this.Position = position;
@@ -36,6 +43,11 @@ namespace RPG
 		public Direction GetNextMove()
 		{
 			return ai.GetNextMove();
+		}
+
+		public void Inform(bool successfull, int[,] visibleMap, bool gameOver)
+		{
+			ai.Inform(successfull, visibleMap, gameOver);
 		}
 	}
 }

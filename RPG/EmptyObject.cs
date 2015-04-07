@@ -4,7 +4,7 @@ namespace RPG
 {
 	public class EmptyObject : IGameObject
 	{
-		public IGameObject InteractWith(IForester forester, Direction direction)
+		public IGameObject InteractWith(Forester forester, Direction direction)
 		{
 			forester.MoveInDirection(direction);
 			return this;
@@ -18,6 +18,11 @@ namespace RPG
 		public string GetDescription()
 		{
 			return "Empty cell";
+		}
+
+		public int ToIndex()
+		{
+			return 1;
 		}
 	}
 }

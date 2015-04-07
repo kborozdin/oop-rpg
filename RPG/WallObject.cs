@@ -4,7 +4,7 @@ namespace RPG
 {
 	public class WallObject : IGameObject
 	{
-		public IGameObject InteractWith(IForester forester, Direction direction)
+		public IGameObject InteractWith(Forester forester, Direction direction)
 		{
 			return this;
 		}
@@ -17,6 +17,11 @@ namespace RPG
 		public string GetDescription()
 		{
 			return "Impassable cell";
+		}
+
+		public int ToIndex()
+		{
+			return 2;
 		}
 	}
 }

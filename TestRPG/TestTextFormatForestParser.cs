@@ -8,12 +8,12 @@ namespace TestRPG
 	[TestFixture()]
 	public class TestTextFormatForestParser
 	{
-		IForest forest;
+		Forest forest;
 
 		[TestFixtureSetUp()]
 		public void SetUp()
 		{
-			forest = TextFormatForestParser.ParseForest(
+			forest = TextFormatForestParser.ParseFullForest(
 				new [] { "4", "11111", "10001", "1L0K1", "11111", "X 10 3 3 4 4" });
 		}
 

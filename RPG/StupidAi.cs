@@ -8,8 +8,8 @@ namespace RPG
 	public class StupidAi : IAi
 	{
 		private readonly int height, width;
-		private IForester forester;
-		private Position finish;
+		private Forester forester;
+		public Position Finish { get; private set; }
 
 		private readonly bool[,] visited;
 		private IEnumerator<Direction> movings;
@@ -18,7 +18,7 @@ namespace RPG
 		{
 			this.height = height;
 			this.width = width;
-			this.finish = finish;
+			this.Finish = finish;
 
 			visited = new bool[height, width];
 		}
@@ -42,16 +42,14 @@ namespace RPG
 			return direction;
 		}
 
-		public void SetForester(IForester newForester)
+		public void SetForester(Forester newForester)
 		{
 			forester = newForester;
-			CleanState();
 		}
 
 		public void SetFinish(Position newFinish)
 		{
-			finish = newFinish;
-			CleanState();
+			Finish = newFinish;
 		}
 
 		private bool IsInForestBoundaries(Position position)
@@ -63,7 +61,7 @@ namespace RPG
 		private IEnumerable<Direction> FindPath(Position position)
 		{
 			visited[position.Row, position.Column] = true;
-			if (position == finish)
+			if (position == Finish)
 			{
 				while (true)
 					yield return Direction.None;
@@ -88,6 +86,10 @@ namespace RPG
 					yield return dir;
 				yield return direction.Inversed();
 			}
+		}
+
+		public void Inform(bool successfull, int[,] visibleMap, bool gameOver)
+		{
 		}
 	}
 }

@@ -1,11 +1,13 @@
-C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\obj\Debug\TestRPG.csprojResolveAssemblyReference.cache
+C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\forest1
+C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\forest2
 C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\TestRPG.dll
 C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\TestRPG.pdb
 C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\nunit.framework.dll
+C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\RPG.dll
+C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\RPG.pdb
 C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\nunit.framework.xml
+C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\obj\Debug\TestRPG.csprojResolveAssemblyReference.cache
 C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\obj\Debug\TestRPG.dll
 C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\obj\Debug\TestRPG.pdb
-C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\RPG.dll
-C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\forest1
-C:\Users\Кирилл\Desktop\oop-rpg\TestRPG\bin\Debug\forest2

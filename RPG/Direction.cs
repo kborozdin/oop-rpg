@@ -16,6 +16,21 @@ namespace RPG
 		{
 		}
 
+		public int ToIndex()
+		{
+			if (this == None)
+				throw new InvalidOperationException();
+			if (this == Right)
+				return 1;
+			if (this == Up)
+				return 0;
+			if (this == Left)
+				return 3;
+			if (this == Down)
+				return 2;
+			throw new NotSupportedException();
+		}
+
 		public Direction Inversed()
 		{
 			if (this == None)
@@ -28,6 +43,19 @@ namespace RPG
 				return Right;
 			if (this == Down)
 				return Up;
+			throw new NotSupportedException();
+		}
+
+		public static Direction FromIndex(int d)
+		{
+			if (d == 1)
+				return Right;
+			if (d == 0)
+				return Up;
+			if (d == 3)
+				return Left;
+			if (d == 2)
+				return Down;
 			throw new NotSupportedException();
 		}
 	}

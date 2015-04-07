@@ -4,7 +4,7 @@ namespace RPG
 {
 	public class MedKitObject : IGameObject
 	{
-		public IGameObject InteractWith(IForester forester, Direction direction)
+		public IGameObject InteractWith(Forester forester, Direction direction)
 		{
 			forester.IncreaseHealth(1);
 			forester.MoveInDirection(direction);
@@ -19,6 +19,11 @@ namespace RPG
 		public string GetDescription()
 		{
 			return "First aid kit";
+		}
+
+		public int ToIndex()
+		{
+			return 4;
 		}
 	}
 }

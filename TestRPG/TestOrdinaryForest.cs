@@ -8,13 +8,13 @@ namespace TestRPG
 	[TestFixture()]
 	public class TestOrdinaryForest
 	{
-		IForest forest;
+		Forest forest;
 		bool invoked;
 
 		[SetUp()]
 		public void SetUp()
 		{
-			forest = new OrdinaryForest(5, 5);
+			forest = new Forest(5, 5, 0);
 			invoked = false;
 			forest.OnChange += () => invoked = true;
 		}
@@ -22,7 +22,7 @@ namespace TestRPG
 		[Test()]
 		public void TestAddForester()
 		{
-			var forester = new OrdinaryForester("X", 10, new Position(0, 1), new StubAi());
+			var forester = new Forester(0, "X", 10, new Position(0, 1), new StubAi(new Position(0, 1)));
 			forest.AddForester(forester);
 
 			var enumerated = forest.EnumerateForesters().ToList();
@@ -48,10 +48,10 @@ namespace TestRPG
 		[Test()]
 		public void TestMoveForester()
 		{
-			var forester = new OrdinaryForester("X", 10, new Position(2, 2), new StubAi());
+			var forester = new Forester(0, "X", 10, new Position(2, 2), new StubAi(new Position(2, 2)));
 			forest.AddForester(forester);
 			invoked = false;
-			forest.MoveForester(forester.Name, Direction.Right);
+			forest.MoveForester(forester.Id, Direction.Right);
 			Assert.IsTrue(invoked);
 
 			var position = forest.EnumerateForesters().First().Position;
